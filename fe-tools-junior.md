@@ -1,14 +1,18 @@
 ##前端必备利器（基础篇）
 
+------
+
 ###一、常用工具
 
-	1. Sublime text 2或者3 -- 不解释，推荐使用2。
-	2. XMind -- 思维导图，流程图非常方便。
-	3. Evernote -- 有理想的程序员都需要一款强大的笔记软件，而Evernote毫无疑问符合你的任何需求，不仅仅工作包括生活。
-	4. Markdown Editor -- 有节操的程序员都有一定程度的强迫症都希望写成nice的笔记，Markdown你的不二选择。
-	5. Windows下的Fiddle和Mac OS X下的Charles -- 避免成为瞎子。
-	6. 有道词典 -- 大中华的工程师都使用吧。
-	7. Google Chrome DevTools -- 不二选择
+1. Sublime text 2或者3 -- 不解释，推荐使用2。
+2. XMind -- 思维导图，流程图非常方便。
+3. Evernote -- 有理想的程序员都需要一款强大的笔记软件，而Evernote毫无疑问符合你的任何需求，不仅仅工作包括生活。
+4. Markdown Editor -- 有节操的程序员都有一定程度的强迫症都希望写成nice的笔记，Markdown你的不二选择。
+5. Windows下的Fiddle和Mac OS X下的Charles -- 避免成为瞎子。
+6. 有道词典 -- 大中华的工程师都使用吧。
+7. Google Chrome DevTools -- 不二选择
+8. SVN
+9. Git
  
 ###二、Sublime Package
  
