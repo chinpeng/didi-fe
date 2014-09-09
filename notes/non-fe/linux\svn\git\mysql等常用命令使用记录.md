@@ -114,7 +114,7 @@
 
 **Setting** [参考地址](http://blog.csdn.net/alex_my/article/details/8741615)
 
-1. 生成ssh-key `sudo ssh-keygen -t rsa -C "my first ssh-key` [参考地址](http://blog.csdn.net/alex_my/article/details/8741625)    
+1. 生成ssh-key `sudo ssh-keygen -t rsa -C "my first ssh-key"` [参考地址](http://blog.csdn.net/alex_my/article/details/8741625)    
 2. 使用vi命令查看生成的ssh_key.pub内容并复制添加到Github上面的SSH Key里面    
 3. 测试一下本地git跟github是否连接    
 	
@@ -172,6 +172,11 @@
 ####5. OS X下git status中文会显示为编码的解决方案
 
     git config --global core.quotepath false
+
+
+####6. git命令简图
+
+![sss](../images/Git_Cheat_Sheet.png)
 
 ###五、mysql
 
