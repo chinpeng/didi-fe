@@ -1,17 +1,16 @@
-##linux\svn\git\mysql等常用命令使用记录
+###linux\svn\git\mysql等常用命令使用记录
 
 [svn命令详解](http://blog.csdn.net/wklken/article/details/6594956)    
 [vi命令详解](http://www.cnblogs.com/88999660/articles/1581524.html)     
 [git命令详解](http://blog.csdn.net/ithomer/article/details/7529022)     
 [源码安装nginx](http://www.nginx.cn/install)    
+[Linux命令速查](http://ganquan.info/linux/)
 
 
 
-###一、svn命令
+####svn命令
 
-####基础
-
-----
+#####基础
 
 1. `svn list svn://10.10.10.60/xiaoju/server/static/` -- show list
 2. `svn co svn://10.10.10.60/xiaoju/server/trunk/api/v2/views` -- checkout
@@ -28,9 +27,8 @@
 13. `svn delete –force over-there` -- force to delete
 
 
-####进阶
+#####进阶
 
-----
 
 1. `svn export svn://10.10.10.60/xiaoju/server/trunk/api/v2/views` -- use for release project, without .svn folder
 8. `svn diff -r 12302:12304 home.html` -- diff two files
@@ -53,12 +51,11 @@
 		
 23. ci的时候出现 xx.html is out of date－－解决方法就是先update一下，然后再ci  
 
+-----
 
-###二、Linux命令（常用）
+####Linux命令（常用）
 
-####1. 基础
-
-----
+#####1. 基础
 
 1. ls
 2. cp
@@ -77,7 +74,7 @@
 
 
 
-####2. 进阶
+#####2. 进阶
 
 1. hostname－－显示主机名
 2. top－－显示进程
@@ -101,11 +98,11 @@
 11. grep的详细使用
 
 	
-	
+-------
 
-###三、git -- Linux & mac
+####Git -- Linux & mac
 
-####1. 安装和配置
+#####1. 安装和配置
 
 **Install:**
 
@@ -122,7 +119,7 @@
 	
 		parallels@ubuntu:~$ ssh git@github.com		The authenticity of host 'github.com (192.30.252.130)' can't be established.		RSA key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48.		Are you sure you want to continue connecting (yes/no)? yes		Warning: Permanently added 'github.com,192.30.252.130' (RSA) to the list of known hosts.		PTY allocation request failed on channel 0		Hi liujb! You've successfully authenticated, but GitHub does not provide shell access.		Connection to github.com closed.
 			
-####2. Create a new repository on the command line
+#####2. Create a new repository on the command line
 
     touch README.md
     git init
@@ -131,13 +128,13 @@
     git remote add origin git@github.com:liujb/c-study.git
     git push -u origin master
     
-####3. Push an existing repository from the command line
+#####3. Push an existing repository from the command line
 
     git remote add origin git@github.com:liujb/c-study.git
     git push -u origin master
     
 
-####4. Basic command
+#####4. Basic command
 
 1. `git clone git@github.com:liujb/didi-fe.git`
 2. `git status`
@@ -169,16 +166,27 @@
 15. `git reset --hard origin/master` --
 
 
-####5. OS X下git status中文会显示为编码的解决方案
+#####5. OS X下git status中文会显示为编码的解决方案
 
     git config --global core.quotepath false
 
 
-####6. git命令简图
+#####6. git命令简图
 
 ![sss](../images/Git_Cheat_Sheet.png)
 
-###五、mysql
+------
+
+####Linux
+
+#####1. 基础
+
+#####2. 进阶
+
+1. `passwd` -- 修改密码
+
+
+####mysql
 
       1. desc tablename; -- 查看表结构
       2. show databases; -- 查看所有的数据
