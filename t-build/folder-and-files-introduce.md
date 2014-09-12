@@ -35,7 +35,7 @@ PS：具体页面相关的js和css文件命名保持一致，如打车券页面c
 1. css为p-coupon-list.css，
 2. js为p-coupon-list.js
 
-其中p表示page。
+其中p表示page。(后续尽量避免在html页面中写js和css，都单独分开，考虑到在开发时js和css的缓存，已经与沛沛沟通将所有开发机的静态缓存禁止了，请知晓。)
 
 
 ####V2主要项目文件
