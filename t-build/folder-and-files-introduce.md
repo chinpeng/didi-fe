@@ -8,14 +8,14 @@
 	/Users/kimi/svn/st-trunk/webapp/src 
 	MacBookAir:src kimi$ tree -L 1
 	.
-	├── COA.js -- 陆续废弃
-	├── banner.js -- 陆续废弃
-	├── base.css -- 陆续废弃
+	├── COA.js -- 陆续废弃(将挪到lib下)
+	├── banner.js -- 陆续废弃（将挪到js下）
+	├── base.css -- 陆续废弃（将挪到css下）
 	├── css -- 具体页面相关的css如打车券页面p-coupon-list.css
-	├── didi.animate.js  -- 陆续废弃
-	├── didi.dialog.js -- 陆续废弃
-	├── didi.jbase.js -- 陆续废弃
-	├── didi.min.js -- 陆续废弃
+	├── didi.animate.js  -- 陆续废弃（将挪到lib下）
+	├── didi.dialog.js -- 陆续废弃（将被dd.dialog.js替换）
+	├── didi.jbase.js -- 陆续废弃（将被dd.base.js替换）
+	├── didi.min.js -- 陆续废弃（压缩的文件）
 	├── fonts  -- 继续沿用
 	├── geoLocation.js -- 陆续废弃
 	├── gulpfile.js -- 用来做发布构建的方法（每个项目中都有）
