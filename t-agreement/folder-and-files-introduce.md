@@ -37,6 +37,23 @@ PS：具体页面相关的js和css文件命名保持一致，如打车券页面c
 
 其中p表示page。(后续尽量避免在html页面中写js和css，都单独分开，考虑到在开发时js和css的缓存，已经与沛沛沟通将所有开发机的静态缓存禁止了，请知晓。)
 
+#####activity
+
+	svn://10.10.10.60/xiaoju/server/static/trunk/activity
+
+	liujb:activity kimi$ tree -L 1
+	.
+	├── bs-imgs -- 以前的红包相关img（陆续废弃）
+	├── bs_imgs -- 以前的红包相关img（陆续废弃）
+	├── css -- 所有运营活动相关的css
+	├── img-hb -- 所有红包图片，后期挪动到此文件夹
+	├── img-mall -- 积分商城的图片
+	├── imgs_redpocket -- 老路径
+	├── js -- 所有运营活动的js
+	└── lib -- 第三方库或者我们自己的插件
+	
+请伙伴们在放文件的时候切勿随意，切记。－不明确的地方找忍沟通清楚。
+
 
 ####V2主要项目文件
 
@@ -75,5 +92,4 @@ PS：具体页面相关的js和css文件命名保持一致，如打车券页面c
 	├── valid.html
 	└── waitting.html
 	
-#####
 
