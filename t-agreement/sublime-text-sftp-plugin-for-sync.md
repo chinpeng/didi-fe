@@ -62,4 +62,4 @@
 
 	![](../notes/images/2014-09-21-04.png)
 	
-note by liujb
+*note by liujb*
