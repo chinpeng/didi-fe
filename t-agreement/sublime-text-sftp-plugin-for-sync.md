@@ -61,3 +61,5 @@
 5. Right click your file, you will see like this. And do want you want!
 
 	![](../notes/images/2014-09-21-04.png)
+	
+note by liujb
