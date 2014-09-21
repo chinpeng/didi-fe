@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <title>滴滴打车</title>
+    <link href="" rel="stylesheet">
+    <style type="text/css">
+    html,
+    body,
+    div,
+    span,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    a,
+    em,
+    img,
+    input,
+    q,
+    b,
+    dl,
+    dt,
+    dd,
+    ol,
+    ul,
+    li,
+    form,
+    label,
+    canvas {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        outline: none;
+        font-size-adjust: none;
+        /*防止横屏时字体变粗*/
+        -webkit-user-select: none;
+        /*防止用户选择时弹出select，copy滋养*/
+        -webkit-touch-callout: none;
+        /*防止图片在touch时候弹出保存对话框*/
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        /*防止input等其他被tap元素出现黑色的背景*/
+    }
+    html {
+        font-size: 62.5%;
+        /*字体为10像素*/
+        background-color: #f1f1f1;
+        text-align: center;
+    }
+    body {
+        font-family: 'Microsoft YaHei', arial, sans-serif, 'Droid Sans Fallback';
+        -webkit-text-size-adjust: 100%!important;
+        margin: 0 auto;
+    }
+    .main {
+        margin: 0 5%;
+    }
+    .btn-orange {
+        cursor: default;
+        display: inline-block;
+        width: 100%;
+        height: 41px;
+        line-height: 41px;
+        border-radius: 5px;
+        background-color: #ff8a01;
+        color: #ffffff;
+        font-size: 1.6rem;
+        font-weight: 600;
+        text-decoration: none;
+    }
+    .btn-white {
+        cursor: default;
+        display: inline-block;
+        width: 100%;
+        height: 41px;
+        line-height: 41px;
+        border-radius: 5px;
+        background-color: #fefefe;
+        border: .1rem solid #d7d7d7;
+        color: #666;
+        font-size: 1.6rem;
+        font-weight: 600;
+        text-decoration: none;
+    }
+    .btn-orange:active {
+        background-color: #df7800;
+    }
+    .btn-white:active {
+        background-color: #e9e9e9;
+    }
+    button {
+        display: block;
+        width: 100%;
+        height: 50px;
+        margin-bottom: 10px;
+    }
+    /* 橘色的小车
+    .loading-box {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 9999;
+        display: -webkit-box;
+        -webkit-box-orient: horizontal;
+        -webkit-box-pack: center;
+        -webkit-box-align: center;
+        background-color: rgba(0, 0, 0, .2);
+    }
+    @-webkit-keyframes loading-car-spin {
+        from {
+            -webkit-transform: rotate(0deg);
+        }
+        to {
+            -webkit-transform: rotate(360deg);
+        }
+    }
+    .loading-car {
+        position: relative;
+        width: 50px;
+        height: 50px;
+        border-radius: 100%;
+    }
+    .loading-car .bg {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+        padding: 2px;
+        border-radius: 100%;
+        background-image: -webkit-linear-gradient(#f57a00 60%, #ffba1a);
+        -webkit-animation: loading-car-spin 0.8s infinite linear;
+    }
+    .loading-car .bg::after {
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+        background-color: #fff;
+        border-radius: 100%;
+        content: " ";
+    }
+    .loading-car .loading-car-icon {
+        position: absolute;
+        color: #ff8a01;
+        left: 50%;
+        top: 50%;
+        margin-left: -12px;
+        margin-top: -12px;
+        width: 25px;
+        height: 25px;
+        background-size: 25px;
+        background-repeat: no-repeat;
+        opacity: 0.8;
+        background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAsCAYAAAAn4+taAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAABPBJREFUeNrUmW1sFEUYx6ftYguFtuGlSENQI0JtDYL9gAGjWIkvMUgABQIRP2hEEoWED2c1EKWaqJf4RhTQQMVPTYgoQQOIJAY0AYwW8Q1QIoRgCOWtFq5gOe78P7f/07np7l7vbm/be5Lf3d7O7uz8d2aeeea5ong8rjwtbKk0NgE0g2mgUmVmf4PdYCX4yfGKULRXFRWr3Gwq2AtmgmVgLjkLpAWPgyO89jXwB3gH/ArWg1PgEdYxNZeG5CKkiI0ZxN8bwWGwCQwH20AJ+IDlInYx2AfqQRsFK9axnnUGLqQO1HqUS8MuUlg3RcXAAJfra1ln4EImOZy7k99dYDTYDJrAj6AFfMw59S0bXmXcPzHr4ZHlZL8OfA7uV/7aTjCDPZjXyS5jeRU4lgcRinVK3S+DgZncaGVwrQyFreAW7dw5cAAcBWdAJ+kA0tUR7e1Kw8qIvJBhdArCGI0a8BJYQAdxyM+hNYJeZrQ2BF4He8A1H3tEnvMMeJGCT4I7MLzO+DW03qcIUb0EPAC+9lmEYq++wiHWzWeu8WuOTAGP8fgjsE7l376hILFHMSqm+CFkFb+jWuVB2Lucg4ohUA5Cwtbd+JzOX63geIBCZDFdy+P72Jase0R/E2+q4G2N5vWasxMSthrxeQ9/yUp8sA+EnOLCqxJtsdvk4X7DlggaC4ZoZas50RV9eqvqG3sQbOexRMnPaWWXEhF1KBorir9RUsfArt6loggXrSt9JKSY68kol3LZEsy1GKXWe1QUZzB3kjFWJb+HcIUu5e9yLbyvSrOZijk8o4PHnVyfItpaMsijPmn7BumRrkzjmn5o3dJt+1Xh234R8jT4pYBFyBx56v+gMWw14PP7AhMxGR7rO3MdmV+AvTHbaUF8wrgoxsSBhCj3grdSdm7B2BfcMd4FXgAXjPJF5oI4nCG0bk+i21qMra6kbrbkku3IwGTr8GzKVjds1dI5VWjXVct+JdkjNxmVHEiI6GmyQ/wyABGyYj/f42woKummD42zN+pDq8Io/MHjIUHEXIe5IDqZ2bZKXUiZUVjj8ZDrAxBS4zF8zbaV6skHM46ajvE4Hl15xDh/Q2LHlmptPrjt27QANdnYOeATIyKXCGSxce8VXcglh7zVDtwoN33FWKiRXqxcu+6yspPXF3MUItnHdiNG25iIscJWK17oVXyL2PfAOIf59J/XqsbxaZeHdHIIDnYo60p4Dffx3FsrpZAKh7LLZKjLvSMhtL2Y3qCdDXayChcRilGpeJGSHMP0DS4ikvmwoa6RtN32lAVxb5YNWcBd3Kgs7h0JPgULs3z2vuSBvtrtYb4qG3sI/M5d5C5lJ62POuw7xBPdrCTpZkcM8zx6ordpI21ltz3Crfj8zUcX+g9DiuSGqYqU+fiMOgytQ6lCbDHiRhsKJGBsg4gGtyzKigKKfF91TweFojuUneHr77Yabf0sXV5LcknL6df7m0mELpn6sFng9P/IQqZ/WjhhBzOEGMPFb1hAjT7Hl3mCW/EII46lyv4r+690QhTXhCYeX6U3+5N+ewVX2mQ6qJzeqET1/J+9Uuv1GFNBZmroGj1bhJGChDuzuJmqZjqoUbn/ieopxIyDbidib4OfHXZrfm9hH840PDCtw+P6OOdQvu18mvKzvREiO7PjLgKbnCrJgzWz103rTnjVULRHLu5fAQYAbl04rBDx7iwAAAAASUVORK5CYII=");
+    }*/
+    /*loading**/
+    .loading-box {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 9999;
+        display: -webkit-box;
+        -webkit-box-orient: horizontal;
+        -webkit-box-pack: center;
+        -webkit-box-align: center;
+        background-color: rgba(0, 0, 0, 0);
+    }
+    .loading-box .loading-bg {
+        width: 90px;
+        height: 90px;
+        border-radius: 10px;
+        background-color: rgba(0, 0, 0, .55);
+        display: -webkit-box;
+        -webkit-box-orient: horizontal;
+        -webkit-box-align: center;
+        -webkit-box-pack: center;
+    }
+    @-webkit-keyframes loading-car-spin {
+        from {
+            -webkit-transform: rotate(0deg);
+        }
+        to {
+            -webkit-transform: rotate(360deg);
+        }
+    }
+    .loading-car {
+        position: relative;
+        width: 30px;
+        height: 30px;
+        border-radius: 100%;
+    }
+    .loading-car .bg {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+        padding: 2px;
+        border-radius: 100%;
+        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADoAAAA6CAYAAADhu0ooAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyRpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoTWFjaW50b3NoKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpDM0MxMjY2RjM3MzQxMUU0QUFEREUxQkE4MTAyRjZFNiIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpDM0MxMjY3MDM3MzQxMUU0QUFEREUxQkE4MTAyRjZFNiI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkMzQzEyNjZEMzczNDExRTRBQURERTFCQTgxMDJGNkU2IiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkMzQzEyNjZFMzczNDExRTRBQURERTFCQTgxMDJGNkU2Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+2PSQ5QAABKlJREFUeNrkm1lsDVEYx89tq1dbqsRStTeqjVgeLQkh+uBJglgelIgghEQiUSEkHmyxJCIhIRJE7CXiEbGLRhGUqJ3Yt9ZSlLbj/2X+h5PJbbV3ae8cX/Lrub135sz5z3fWb84EHMdRMbBkMAgMAX1AHugOMkBrHvMFVIDn4BEoBRdBMfgZ7QIFoihUREwA48EwkBpmPt/ABXAEHAIf40VoP7AQTAIpxvd3wGlwA5SBFyz0F/4unm0HuoBcMBCMBH2NPL6DIrCe+YRvIjRMeoKDoMZxrRacAjNAZgT5dgazwBnm6fAax0DvcPMN56RksAR8YyG+gy0gJwJxdZEHdoAfvJaka0Aw1kJFTInz1w6A7jEQ6CUbHDeuWwYGxEroWPCJF3oE8ptAYKgyvGQZpEbNjrbQuaCaFzgCMppBpKYDOGu03dXRErrM6GwKm1Ggl81GZ7UzUqFzmJF4syCORGqWGmI3hit0HAXWNqYtNAPrGlLj6jpZxqsKZrA4jkVqdrGsP8HQhgqVMeoqT9znA5GaUpb5HWjVEKFLeMJD0NpHQruAryx70b+E9gKVPDjfRyI184xhZ0h9QvfywP0+FKm5a8yeQgrNYS9bBXr4WOggY8j5UysTjIVMIUgEe8BT5V8r5hJRbJN3PSprw1dcLEs04J7yt+WDE7IK5Xr3lfboOJAGLlkgUuwkwzQBsEK+0EInM92t7LHjTMfqqiuBrHJW287gtSVCBxjhlzbi0cEUedsikWI3QRU/T0tgSFLsnLLPHjIdnUAXK8ZVbbNbTHuL0Gz+U2ah0GtMM0VoFv95YqHQq0xTRWhb4xGBbfaGaaIIDYJf4LOFQl8yrU3CnxLOIH5YKFRrqgnE6GlavFgnzg0+JCi77c8jStuF9mT6wnahffQcwXah/f8XocOYXra5181UbtREtgq0s9mjY5iel+WaV2jAIqFTmRbpCIP5owh3iN9727ucGUlwrDxU1bXBq4XUIdt3ykN5NJEH1PjYqz2UG8lswaBCqa6qpjkUmuRjb65R7s61Q8qImoQaXlrwBlTTs36yUcqN6cqQIhu9Hpudj9e0uGSftdc2YDs/rzJF1uVRLTKZVbnSJ0IPK3cf4nXlRjarvMNJKPtFkRJ9SPOByMUUKVGSiV6R9Ql1jINlTdcqjkXOZFWVJjcDPAh1UH1TwGpWW2mn7UF6HIosAFtZxvmsvqqxQhW9qqODEhbtEEciF4FdHPuXU3Cd1tDVSzqFJrHrfkaPN4fJBuhtyt0EXQsWgM3/OqkxyzRpq91AS7bhJ3p61cTjpAwhvdjxTFfuTm0VTaF62MnmXQ1S6H3l7pSOpcl+/LXq73NcGUIm8doqFkL1pD+LglMo/jXnl9EOgudwgl7A68gNXQnWqUa+YBBJhEGqcC7vdktSwRnJ4wgmGh25aJ4ChvPGOuxRC70znqYQarbdPN79NHo5hb21vDDwFryntyvZmSkem8GQh5wrgawRyn2JQM+3pdc/ADaoCB9rRjNmFGR1zmWaTi9r4akkxfO9/hxk9ZSB/wo4Si/GzesgoUzGtq7KDSBnsbfO5MSjLcUptjPx8ht2LCUk6i/4/BZgACCJvYHqM8EOAAAAAElFTkSuQmCC);
+        background-size: 30px;
+        -webkit-animation: loading-car-spin 1s infinite linear;
+    }
+    .loading-car .bg::after {
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+        border-radius: 100%;
+        content: " ";
+    }
+    .loading-car .loading-car-icon {
+        position: absolute;
+        color: #ff8a01;
+        left: 50%;
+        top: 50%;
+        margin-left: -13px;
+        margin-top: -13px;
+        width: 26px;
+        height: 26px;
+        background-size: 26px;
+        background-repeat: no-repeat;
+        opacity: 0.8;
+        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADoAAAA6CAYAAADhu0ooAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyRpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoTWFjaW50b3NoKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpDM0MxMjY3MzM3MzQxMUU0QUFEREUxQkE4MTAyRjZFNiIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpDM0MxMjY3NDM3MzQxMUU0QUFEREUxQkE4MTAyRjZFNiI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkMzQzEyNjcxMzczNDExRTRBQURERTFCQTgxMDJGNkU2IiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkMzQzEyNjcyMzczNDExRTRBQURERTFCQTgxMDJGNkU2Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+xD85CAAAAy1JREFUeNrsmVuITHEcx2dmZ3dqh2XbRawkHtYKyQuKIsWWyKVFq7ZVdhWvyos8yvVNiZUnURJyaYsHtnVJSS4p02LtbmxeNC7DztiZ4/vPd+rfCZ055z/nzNjfrz51Lv/57/n+b7/Lhi3LCo0Fi4TGiIlQESpCRagIFaEiVISKUBH6v1q0yP2vBx1g6j/aZMErcBAkynFGN4CrHMz9YBLoBo9AHJyhwCugDfSC+nIU2gnCoBkspNCn4D6oAZ9BndZevd9SrI8JFynxHg8GQC3v3/N6BKS5XCeDD6ASNLCdWgEby2FGK8A+0KeJDHHm0uQHyIAvYIImMr/cn4DVxpWqGTXIeZADXWANmAtqHfxuHJgPtoIHIAu2m/w2kyJbrd+212M/leA2+AoaTH2fqT0apWvIgTncg15sHngOToI9pbR0OzibnQZXyDWQBjNKZelWgX6QBNUGhTZz8E6b6M9tZLQWtNI1KP83E5wC3w2ek7fAIGgHE/ksCQ6DN36EgMr/XQZVtucLuJ/iDBSUxUC11qaGLkjZT/BNe5e/T9H9hPk31GC2aO2awHI/hFZoH6vbUlJsi/kVMAxz2T4OIAm5BHb4GRldBA8DENoFXvodArZocexKhnzbGOJ5tWdgGZgFjmvPN/vtR6MM9ZS12d4dsrxbo63PHj6/6da9uJ3ROu1kfWt712dgRgds9/3aie9rhSGnXe9kjmnRFeiHhUquXzvsU6Vni3mtDruzvK5nThvyFFp6CLxHtaXWC46AF7YlGC+gz13a77LMhI6BIe359SBCwISDvabi1ZiDvmbbBP3Njvq9R5X1OGizjon0brCIlYf8aT8FrGJIp0os0x30dy+IUoqKd2+42S3aQVaIpTg4Kb/9aDf9XcGD6/LvnXAr0qtQdfJu4tIstp0DB4IsYE9jkeuCFnDHmVZFWfyKMGqK8F63ES2SSjLNU7P2CYySDNPATNCV+hW2+wTLKW5tCYvZ+rcNBl3uHPrDSH/02OewLSBR9q4UCthNLGblk+e7XIZerJGJfL7PO6zsl1ylvuRM/j8qQkWoCBWhIlSEilARKkJFqAgtD/slwAAVRos0Zj9upAAAAABJRU5ErkJggg==);
+    }
+    </style>
+</head>
+
+<body>
+    <div class="main" style="width:100px;">
+
+        <button id='btn-alert'>alert</button>
+        <button id='btn-confirm'>confirm</button>
+        <button id='btn-confirm-2'>confirm-2</button>
+        <button id='btn-threeSel'>threeSel</button>
+        <button id='btn-loading'>loading</button>
+        <button id='btn-loading-2'>flatLoading</button>
+        <button id='btn-loading-3'>logoLoading</button>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+    </div>
+    <script type="text/javascript" src="./lib/dd.base.js"></script>
+    <script type="text/javascript" src="./lib/dd.dialog.js"></script>
+    <script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function(ev) {
+        var didi = dd.dialog;
+
+
+        didi.alert("当前不是WIFI网络, 下载离线地图包需要18.2m流量，继续下载吗？", "LET ME FUCK YOU", "我要确定！");
+
+        document.getElementById("btn-alert").addEventListener('click', function() {
+
+            // didi.alert("当前不是WIFI网络, 下载离线地图包需要18.2m流量，继续下载吗？");
+            // didi.alert("当前不是WIFI网络, 下载离线地图包需要18.2m流量，继续下载吗？","LET ME FUCK YOU");
+            didi.alert("当前不是WIFI网络, 下载离线地图包需要18.2m流量，继续下载吗？", "LET ME FUCK YOU", "我要确定！");
+
+            // didi.alert({
+            //     tip: "当前不是WIFI网络, 下载离线地图包需要18.2m流量，继续下载吗？",
+            //     icon: {
+            //         width: '4px',
+            //         height: "20px"
+            //     },
+            //     btn: {
+            //         handler: function(ev) {
+            //             alert("HELLO");
+            //         }
+            //     }
+            // });
+        })
+
+        document.getElementById("btn-confirm").addEventListener('click', function() {
+            // didi.confirm("当前不是WIFI网络, 下载离线地图包需要18.2m流量，继续下载吗？", function(ev) {
+            //     alert('确定');
+            // });
+            didi.confirm({
+                text: "当前不是WIFI网络, 下载离线地图",
+
+                confirm: {
+                    handler: function(e) {
+                        console.log(e);
+                    }
+                }
+            })
+            // didi.confirm({
+            //     text: "当前不是WIFI网络, 下载离线地图包需要18.2m流量，继续下载吗？",
+            //     cancel: {
+            //         id: "btn-cancel",
+            //         val: "CANCEL",
+            //         kls: "btn-white",
+            //         event: "click",
+            //         handler: function() {
+            //             console.log('canceld');
+            //         }
+            //     },
+            //     confirm: {
+            //         id: "btn-ok",
+            //         val: 'CONFIRM',
+            //         kls: "btn-orange",
+            //         event: "click",
+            //         handler: function() {
+            //             console.log('confirmed');
+            //         }
+            //     }
+            // })
+        });
+
+        document.getElementById("btn-threeSel").addEventListener('click', function() {
+
+            var dialog = didi.Fn({
+                type: "threeSel",
+                tip: {
+                    txt: "当前不是WIFI网络, 下载离线地图包需要18.2m流量，继续下载吗？"
+                },
+                icon: {
+                    url: "/static/webapp/images/i-plaint.png"
+                },
+                btns: [{
+                    id: "btn-close",
+                    val: "给滴滴好评",
+                    kls: "btn-orange",
+                    event: "click",
+                    handler: function(ev) {
+                        dialog.hide();
+                    }
+                }, {
+                    id: "btn-xx",
+                    val: "下次再评",
+                    kls: "btn-white",
+                    event: "click",
+                    handler: function(ev) {
+                        dialog.hide();
+                    }
+                }, {
+                    id: "btn-oo",
+                    val: "无情的拒绝",
+                    kls: "btn-white",
+                    event: "click",
+                    handler: function(ev) {
+                        dialog.hide();
+                    }
+                }]
+            });
+            dialog.show();
+
+        })
+
+        document.getElementById("btn-loading").addEventListener('click', function() {
+            // didi.loading("加载中...");
+            didi.loading({
+                time: 2000,
+                hideCB: function() {
+                    alert("Hello")
+                }
+            })
+        })
+
+
+        document.getElementById('btn-confirm-2').addEventListener('click', function() {
+            didi.confirm({
+                text: "当前不是WIFI网络, 下载离线地图包需要18.2m流量，继续下载吗？", //need
+                ext: '<p style="font-size: 1.4rem;margin-bottom: 20px;">或&nbsp;<a style="text-decoration: none;color:#ff8a01;" href="">取消订单</a></p>'
+            })
+        });
+
+
+        document.getElementById('btn-loading-2').addEventListener('click', function() {
+            didi.flatLoading();
+        });
+
+        document.getElementById('btn-loading-3').addEventListener('click', function() {
+            didi.logoLoading();
+        });
+        // var onBridgeReady = function() {
+        //     if (!WeixinJSBridge) {
+        //         return; // 保证WeixinJSBridge存在
+        //     }
+        //     WeixinJSBridge.call('hideToolbar'); //隐藏底部工具栏
+        //     WeixinJSBridge.call('hideOptionMenu'); //隐藏右上角分享按钮
+        // };
+
+        // if (typeof WeixinJSBridge === "undefined") {
+        //     document.addEventListener('WeixinJSBridgeReady', onBridgeReady);
+        // } else {
+        //     onBridgeReady();
+        // }
+
+        // console.log(didi.getElesByKls(null,'main')[0].style.cssText);
+
+    }, false);
+
+    // alert(name);
+    </script>
+</body>
+
+</html>
