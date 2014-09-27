@@ -32,3 +32,4 @@
 23. [Webapp字体单位](http://www.w3cplus.com/css3/define-font-size-with-css3-rem)
 24. [SPAwebapp](http://my.oschina.net/maomi/blog/88089)
 25. [jquery源码分析](https://github.com/JsAaron/jQuery)
+26. [巧用cssText](http://www.cnblogs.com/snandy/archive/2011/03/12/1980444.html)
