@@ -33,3 +33,6 @@
 24. [SPAwebapp](http://my.oschina.net/maomi/blog/88089)
 25. [jquery源码分析](https://github.com/JsAaron/jQuery)
 26. [巧用cssText](http://www.cnblogs.com/snandy/archive/2011/03/12/1980444.html)
+27. [每个程序员都必读的10篇文章](http://it.deepinmind.com/其它/2014/05/15/10-articles-every-programmer-must-read.html)
+28. [js内存泄露排查方法](http://h5dev.uc.cn/article-25-1.html)
+29. [web缓存机制综述](http://www.58player.com/blog-2537-111650.html)
