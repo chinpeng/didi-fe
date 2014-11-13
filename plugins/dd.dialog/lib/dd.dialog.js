@@ -6,12 +6,9 @@
     if (dd.dialog) return dd.dialog;
 
 
-    var d = dd.dialog || {};
-
+    var d = {};
 
     var docElem = document.documentElement,
-        docEleScrollT = docElem.scrollTop,
-        docEleScrollL = docElem.scrollLeft,
         docEleClientH = docElem.clientHeight,
         docEleClientW = docElem.clientWidth;
 
@@ -29,56 +26,74 @@
      * 往body中插入div
      */
     var insertDom = function(newNode) {
-        // var firstScriptInBody = document.getElementsByTagName("script")[0];
         document.body.appendChild(newNode);
-        // return firstScriptInBody ? document.body.insertBefore(newNode, firstScriptInBody) : document.body.appendChild(newNode);
     };
-
     /**
-     * 初始化配置
+     * util
      */
-    var initOpts = function(opts) {
-        if (!opts) return;
-
-        opts.type = opts.type || "loading";
-        opts.bg = opts.bg || "#000";
-        opts.op = opts.op || "0.3";
-
-        opts.width = opts.width || "280px";
-        opts.d_bg = opts.d_bg || "#fff";
-        opts.d_op = opts.d_op || "";
-
-        // opts.filter = opts.op ? "alpha(opacity=" + (opts.op * 100) + ")" : "alpha(opacity=20)";
-        // opts.d_filter = opts.d_op ? "alpha(opacity=" + (opts.d_op * 100) + ")" : "alpha(opacity=20)";
-        //生成弹出框背景样式&弹出框wrap样式
-        opts.wallCss = "position:absolute;left:0;top:0;display:none;z-index:9998;background-color:" + opts.bg + ";opacity:" + opts.op + ";filter:" + opts.filter + ";";
-        opts.wrapCss = "position:fixed;text-align:center;border-radius:5px;z-index:9999;width:" + opts.width + ";height:" + opts.height + ";background-color:" + opts.d_bg + ";opacity:" + opts.d_op + ";filter:" + opts.d_filter + ";" + ((opts.type === 'loading') ? "padding:0;" : "") + "";
-    };
-
     var util = {
+        /**
+         * 初始化配置及生成dom元素
+         */
+        genDom: function(opts, div_wall, div_wrap) {
+            if (!opts) return;
 
+            if (Object.prototype.toString.call(opts, null) === '[object Object]') { // 传入的object
+                opts.type = opts.type || "loading";
+                opts.bg = opts.bg || "";
+                opts.op = opts.op || "";
+
+                opts.width = opts.width || "280px";
+                opts.d_bg = opts.d_bg || "#fff";
+                opts.d_op = opts.d_op || "";
+                //alert(opts.d_bg);
+                //生成弹出框背景样式&弹出框wrap样式
+                opts.wallCss = "background:" + opts.bg + ";opacity:" + opts.op + ";filter:" + opts.filter + ";";
+                opts.wrapCss = "text-align:center;width:" + opts.width + ";height:" + opts.height + ";opacity:" + opts.d_op + ";filter:" + opts.d_filter + ";" + "background: " + opts.d_bg + ";";
+
+                div_wall.style.cssText = opts.wallCss;
+                div_wrap.style.cssText = opts.wrapCss;
+
+                //生成弹窗内容
+                var html = "<div style='" + ((opts.type === 'loading') ? "padding:0px;" : "padding: 0px 6%;") + "'>" + util.genIcon(opts) + util.genTitle(opts) + util.genTip(opts) + util.genButtons(opts) + "</div>" + util.genClose(opts);
+                div_wrap.innerHTML = html;
+
+            } else if (Object.prototype.toString.call(opts, null) === '[object String]') { // 配置为html
+                div_wrap.innerHTML = opts;
+            } else if (Object.prototype.toString.call(opts, null) === '[object HTMLDivElement]') { // 传入的dom
+                div_wrap.style.cssText = "display:inline-block;width:280px;background-color:#fff;";
+                opts.style.display = "inline-block";
+                div_wrap.appendChild(opts);
+            }
+
+        },
         /**
          * 生成icon相关的html
          */
         genIcon: function(opts) {
+            //默认无icon,true为默认icon
+            if (!opts.icon) {
+                return "";
+            }
             var res = "";
             opts.icon = opts.icon || {};
             var w = opts.icon.width || "8px",
                 h = opts.icon.height || "36px",
-                url = opts.icon.url || "./imgs/i-plaint.png";
+                url = opts.icon.url || "/static/webapp/src/images/i-plaint.png";
             var margin = "",
                 icon = "",
                 cssText = "";
-            if (opts.type !== 'loading') {
-                margin = "margin:24px 0 12px";
-                cssText = 'display:inline-block;width:60px;height:60px;background-color:#f0f0f0;background-size:60px 60px;border-radius:50%;'
-                icon = '<span style="vertical-align:middle;display:inline-block;height:100%;"></span><img src=' + url + ' style="width:' + w + ';height:' + h + ';vertical-align:middle;" />'
-            } else {
+            if (opts.type === 'loading') {
                 url = opts.icon.url || "http://static.xiaojukeji.com/webapp/images/loading_2.gif"
                 margin = "margin:36px 0 10px";
                 cssText = 'display:inline-block;width:30px;height:30px;background:url(' + url + ') no-repeat;background-size:30px 30px;';
+
+            } else {
+                margin = "margin:24px 0 12px";
+                cssText = 'display:inline-block;width:60px;height:60px;background-color:#f0f0f0;background-size:60px 60px;border-radius:50%;'
+                icon = '<span style="vertical-align:middle;display:inline-block;height:100%;"></span><img src=' + url + ' style="width:' + w + ';height:' + h + ';vertical-align:middle;" />';
             }
-            res = '<p style="' + margin + '"><span style="' + cssText + '">' + icon + '</span></p>';
+            res = '<p  style="' + margin + '"><span style="' + cssText + '">' + icon + '</span></p>';
             return res;
         },
 
@@ -105,7 +120,12 @@
             }
             return opts.tip ? '<p style="' + ((opts.type !== "loading") ? "text-align:center;" : "") + 'line-height:1.9rem;color:' + opts.tip.color + ';font-size:' + opts.tip.size + ';">' + opts.tip.txt + '</p>' : "";
         },
-
+        /**
+         * 右上角关闭按钮
+         */
+        genClose: function(opts) {
+            return opts.close ? '<a class="d-close" href="javascript:void(0);"></a>' : '';
+        },
         /**
          * 尾部红包
          */
@@ -117,14 +137,15 @@
                     var btn = opts.btns[i];
                     if (btn && opts.type === 'alert') {
                         res += '<a class="' + btn.kls + '" id="' + btn.id + '">' + btn.val + '</a>';
-                    } else if (btn && opts.type === 'confirm') {
+                    } else if (btn && opts.type === 'confirm') { //确认 取消两个按钮
                         res += '<a class="' + btn.kls + '" id="' + btn.id + '" style="width: 43%; height: 40px; line-height: 40px; margin:0 3%;">' + btn.val + '</a>';
-                    } else {
-                        res += '<a class="' + btn.kls + '" id="' + btn.id + '" sdscs style="margin:5px 0;">' + btn.val + '</a>';
+                    } else { //
+                        res += '<a class="' + btn.kls + '" id="' + btn.id + '" style="margin:5px 0;">' + btn.val + '</a>';
                     }
                 }
                 res += '</div>';
             }
+            //按钮下面附加内容
             if (opts.ext && typeof opts.ext === 'string') {
                 res += opts.ext;
             }
@@ -136,6 +157,12 @@
          */
         addEvents: function(opts) {
             var btn = null;
+            if (opts.close) {
+                var close = document.getElementsByClassName("d-close")[0];
+                close.addEventListener("click", function() {
+                    dialog.hide();
+                }, false);
+            }
             if (!isArray(opts.btns) || !opts.btns.length) return;
             for (var i = 0, l = opts.btns.length; i < l; i++) {
                 btn = opts.btns[i];
@@ -163,7 +190,6 @@
         }
     };
 
-
     /**
      * Dialog prototype
      * @type {Function}
@@ -173,59 +199,28 @@
         init: function(opts) {
             if (!opts) return;
 
-
             var div_wall = document.createElement('div');
             var div_wrap = document.createElement("div");
             div_wall.id = "d-wall";
             div_wrap.id = "d-wrap";
 
+            //初始化配置 生成内容HTML
+            util.genDom(opts, div_wall, div_wrap);
+
+            //删除已存在的弹窗
+            dvWall && document.body.removeChild(dvWall);
+            dvWrap && document.body.removeChild(dvWrap);
+
+            //插入dom
+            insertDom(div_wall);
+            insertDom(div_wrap);
+
+            dvWall = div_wall;
+            dvWrap = div_wrap;
+
             if (Object.prototype.toString.call(opts, null) === '[object Object]') {
-                initOpts(opts); //初始化配置
-                div_wall.style.cssText = opts.wallCss;
-                div_wrap.style.cssText = opts.wrapCss;
-
-                var html = "<div style='" + ((opts.type === 'loading') ? "padding:0px;" : "padding: 0px 6%;") + "'>" + util.genIcon(opts) + util.genTitle(opts) + util.genTip(opts) + util.genButtons(opts) + "</div>";
-                div_wrap.innerHTML = html;
-
-            } // 配置为json对象
-
-            if (Object.prototype.toString.call(opts, null) === '[object String]') {
-                div_wall.style.cssText = "display:none;position:absolute;left:0;top:0;display:none;z-index:9998;background-color:#000;opacity:0.3";
-                div_wrap.style.cssText = "position:absolute;z-index:9999;";
-                div_wrap.innerHTML = opts;
-            } // 配置为html
-
-            if (Object.prototype.toString.call(opts, null) === '[object HTMLDivElement]') {
-                div_wall.style.cssText = "position:absolute;left:0;top:0;display:none;z-index:9998;background-color:#000;opacity:0.3";
-                div_wrap.style.cssText = "position:absolute;z-index:9999;display:inline-block;border-radius:5px;padding:0;width:280px;background-color:#fff;";
-                opts.style.display = "inline-block";
-                div_wrap.appendChild(opts);
-            } // 传入的dom div元素
-
-
-            if (dvWall) {
-                document.body.removeChild(dvWall);
-                dvWall = null;
+                util.addEvents(opts);
             }
-            if (dvWrap) {
-                document.body.removeChild(dvWrap)
-                dvWrap = null;
-            }
-
-            if (!dvWall) {
-                insertDom(div_wall);
-                dvWall = document.getElementById('d-wall');
-
-            }
-            if (!dvWrap) {
-                insertDom(div_wrap);
-                console.log("init" + document.body.scrollHeight);
-                dvWrap = document.getElementById('d-wrap');
-                if (Object.prototype.toString.call(opts, null) === '[object Object]') {
-                    util.addEvents(opts);
-                }
-            }
-
         },
         show: function() {
             var that = this;
@@ -234,12 +229,13 @@
                 dvWall.style.display = "block";
                 dvWrap.style.display = "inline-block";
 
-                window.addEventListener("resize", function() {
+                window.addEventListener("resize", reset, false);
+                window.addEventListener("scroll", reset, false);
+
+                function reset(event) {
+                    window.removeEventListener(event.type, reset, false); //先remove event
                     that.reset.call(that);
-                }, false);
-                window.addEventListener("scroll", function() {
-                    that.reset.call(that);
-                }, false);
+                }
             }
         },
         hide: function() {
@@ -250,27 +246,12 @@
         },
         reset: function() {
             if (dvWall && dvWrap) {
-                var p = this._dialogPosi();
-                console.log("reset" + document.body.scrollHeight);
+                dvWrap.style.top = (docEleClientH - dvWrap.clientHeight - 20) / 2 + "px";
+                dvWrap.style.left = (docEleClientW - dvWrap.clientWidth) / 2 + "px";
                 var scrollH = document.body.scrollHeight || document.documentElement.scrollHeight; //考虑到页面滚动和窗体重置
-
                 dvWall.style.width = docEleClientW + "px";
                 dvWall.style.height = scrollH + "px";
-
-
-
-                dvWrap.style.top = p.top + "px";
-                dvWrap.style.left = p.left + "px";
             }
-        },
-        _dialogPosi: function() {
-            var h = dvWrap.clientHeight,
-                w = dvWrap.clientWidth;
-            var scrollT = document.body.scrollTop || document.documentElement.scrollTop;
-            return {
-                top: scrollT + (docEleClientH - h - 20) / 2,
-                left: docEleScrollL + (docEleClientW - w) / 2
-            };
         }
     };
 
@@ -290,10 +271,10 @@
             opts = cfg;
         }
 
-        dialog = new Dialog({
+        dialog = Dialog({
             type: "alert",
             icon: opts.icon || {
-                url: "./imgs/i-plaint.png",
+                url: "/static/webapp/src/images/i-plaint.png",
                 width: "8px",
                 height: "36px"
             },
@@ -337,13 +318,13 @@
         var cancel = opts.cancel || {};
         var confirm = opts.confirm || {};
 
-        dialog = new Dialog({
+        dialog = Dialog({
             type: "confirm",
             tip: {
                 txt: opts.text
             },
             icon: opts.icon || {
-                url: "./imgs/i-plaint.png"
+                url: "/static/webapp/src/images/i-plaint.png"
             },
             btns: [{
                 id: cancel.id || "btn-cancel",
@@ -384,13 +365,14 @@
         } else {
             opts = cfg;
         }
-        dialog = new Dialog({
+        dialog = Dialog({
             type: "loading",
             bg: "#fff",
             d_bg: "#0c0d0d",
             d_op: "0.7",
             width: "140px",
             height: "140px",
+            icon: true,
             tip: {
                 txt: opts.text || "正在加载",
                 color: "#fff",
@@ -423,7 +405,7 @@
         } else {
             opts = cfg;
         }
-        dialog = new Dialog({
+        dialog = Dialog({
             type: "loading",
             bg: "#fff",
             op: '1',
@@ -431,6 +413,7 @@
             d_op: "1",
             width: "140px",
             height: "140px",
+            icon: true,
             tip: {
                 txt: opts.text || "",
                 color: "#666",
@@ -455,7 +438,7 @@
      * 滴滴打车logo的loading
      */
     d.logoLoading = function(time, hideCB) {
-        dialog = new Dialog('<div class="loading-car"><div class="bg"></div><div class="loading-car-icon"></div></div>');
+        dialog = Dialog('<div class="loading-car"><div class="bg"></div><div class="loading-car-icon"></div></div>');
         dialog.show();
         if (!time) {
             time = 5000;
@@ -467,6 +450,54 @@
             }
         }, time);
     };
+
+    /** 专车导流弹框
+        cfg: {
+            title: "",
+            content: "",
+            okFn: fn,
+            cancel: fn
+        }
+     */
+    d.guideUdache = function(cfg) {
+        if (!cfg) return;
+
+        cfg.title = cfg.title || "";
+        cfg.content = cfg.content || "";
+        cfg.cancelVal = cfg.cancelVal || "取消叫车";
+        cfg.confirmlVal = cfg.confirmlVal || "去看看";
+        cfg.image_url = "http://static.xiaojukeji.com/webapp/images/ad_biz.png";
+        var dialog = Dialog({
+            type: "confirm",
+            tip: {
+                txt: "<span style='display:block;font-size:2.3rem;color:#ff8903;line-height:30px;margin-top:160px' >" + cfg.title + "</span><span style='color:#666;font-size:1.2rem;' >" + cfg.content + "</span>"
+            },
+            d_bg: "url(" + cfg.image_url + ") no-repeat #fff;background-size:100% auto;",
+            height: "auto",
+            close: cfg.close || false,
+            btns: [{
+                id: "btn-cancel",
+                val: cfg.cancelVal,
+                kls: "btn-white",
+                event: "click",
+                handler: function(e) {
+                    dialog.hide();
+                    cfg.cancelFn && cfg.cancelFn();
+                }
+            }, {
+                id: "btn-ok",
+                val: cfg.confirmlVal,
+                kls: "btn-orange",
+                event: "click",
+                handler: function(e) {
+                    dialog.hide();
+                    cfg.okFn && cfg.okFn();
+                }
+            }]
+        });
+        dialog.show();
+    };
+
     d.Fn = Dialog;
 
     window.dd = dd; // 注册dd对象到window下
