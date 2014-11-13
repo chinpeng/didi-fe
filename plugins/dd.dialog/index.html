@@ -274,20 +274,20 @@
 
             // didi.alert("当前不是WIFI网络, 下载离线地图包需要18.2m流量，继续下载吗？");
             // didi.alert("当前不是WIFI网络, 下载离线地图包需要18.2m流量，继续下载吗？","LET ME FUCK YOU");
-            didi.alert("当前不是WIFI网络, 下载离线地图包需要18.2m流量，继续下载吗？", "LET ME FUCK YOU", "我要确定！");
+            // didi.alert("当前不是WIFI网络, 下载离线地图包需要18.2m流量，继续下载吗？", "LET ME FUCK YOU", "我要确定！");
 
-            // didi.alert({
-            //     tip: "当前不是WIFI网络, 下载离线地图包需要18.2m流量，继续下载吗？",
-            //     icon: {
-            //         width: '4px',
-            //         height: "20px"
-            //     },
-            //     btn: {
-            //         handler: function(ev) {
-            //             alert("HELLO");
-            //         }
-            //     }
-            // });
+            didi.alert({
+                tip: "当前不是WIFI网络, 下载离线地图包需要18.2m流量，继续下载吗？",
+                icon: {
+                    width: '4px',
+                    height: "20px"
+                },
+                btn: {
+                    handler: function(ev) {
+                        alert("HELLO");
+                    }
+                }
+            });
         })
 
         document.getElementById("btn-confirm").addEventListener('click', function() {
