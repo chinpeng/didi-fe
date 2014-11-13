@@ -53,5 +53,8 @@
 #####5. 其他技巧
 
 1. `which svn` -- Find the svn path
+2. `ln -s "/Applications/Sublime Text 2.app/Contents/SharedSupport/bin/subl" /usr/local/bin/sublime` -- 创建软链
+3. `alias sublime='open -a "Sublime Text 2"'`
+4. `/usr/share/` -- 这个文件夹下面的东东是干嘛的
 
 
