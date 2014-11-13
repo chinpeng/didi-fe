@@ -36,3 +36,7 @@
 27. [每个程序员都必读的10篇文章](http://it.deepinmind.com/其它/2014/05/15/10-articles-every-programmer-must-read.html)
 28. [js内存泄露排查方法](http://h5dev.uc.cn/article-25-1.html)
 29. [web缓存机制综述](http://www.58player.com/blog-2537-111650.html)
+30. [apache和nginx不使用静态缓存](http://blog.chinaunix.net/uid-10051104-id-3849334.html)
+31. [前端工程领域](https://github.com/fouber/blog)
+32. [面试题](http://blog.csdn.net/v_july_v/article/details/7382693)
+33. [移动端fixed](http://www.cnblogs.com/yexiaochai/p/3561939.html)
