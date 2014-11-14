@@ -13,5 +13,9 @@
 2. `git branch issue01`
 3. `git checkout issue01`
 4. `git checkout -b issue02`
-5. 
+5. `git branch -d issue01`
+6. `git merge issue01`
+
+
+#####GIT-CHEAT-SHEAT
 ![sss](./images/Git_Cheat_Sheet.png)
