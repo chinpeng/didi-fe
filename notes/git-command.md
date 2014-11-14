@@ -15,6 +15,7 @@
 4. `git checkout -b issue02`
 5. `git branch -d issue01`
 6. `git merge issue01`
+7. `git reset --hard HEAD`
 
 
 #####GIT-CHEAT-SHEAT
