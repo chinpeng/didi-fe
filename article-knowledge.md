@@ -1,8 +1,8 @@
-###好文汇总－－知识篇
+####好文汇总－－知识篇
 
 *内容均收集于网络，如需引用请注明原作者*
 
-####liujb
+#####liujb
 
 ---
 
@@ -42,9 +42,13 @@
 32. [面试题](http://blog.csdn.net/v_july_v/article/details/7382693)
 33. [移动端fixed](http://www.cnblogs.com/yexiaochai/p/3561939.html)
 
-####Git
+#####Git
 
 -----
 
 1. [Git分支管理策略](http://www.ruanyifeng.com/blog/2012/07/git.html)
 2. [Git合并分支](http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/001375840038939c291467cc7c747b1810aab2fb8863508000)
+
+#####加密
+
+1. [Js加密文件](https://code.google.com/p/crypto-js/)
