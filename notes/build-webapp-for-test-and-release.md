@@ -98,7 +98,7 @@
 		
 		// 单个文件配置
 		var file = {
-		    src: './js/p-home.js',
+		    src: './js/*.js',
 		    dest: '../js/'
 		};
 		
