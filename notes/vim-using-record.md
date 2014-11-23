@@ -8,7 +8,6 @@
 
 1. `/usr/local/Cellar/vim/7.4.430_1/share/vim/vim74`
 
-
 ####vim
 
 1. `esc` -- turn to command mode

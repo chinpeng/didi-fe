@@ -41,6 +41,7 @@
 31. [前端工程领域](https://github.com/fouber/blog)
 32. [面试题](http://blog.csdn.net/v_july_v/article/details/7382693)
 33. [移动端fixed](http://www.cnblogs.com/yexiaochai/p/3561939.html)
+34. [图片预加载](http://www.csdn.net/article/2013-10-15/2817187-3-ways-preload-images-css-javascript-ajax)
 
 #####Git
 
@@ -52,3 +53,8 @@
 #####加密
 
 1. [Js加密文件](https://code.google.com/p/crypto-js/)
+
+#####模版引擎
+
+1. [Js模版比较](http://www.qingdou.me/5009.html)
+2. [高性能模板原理解析](http://cdc.tencent.com/?p=5723)
