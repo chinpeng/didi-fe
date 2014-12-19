@@ -15,6 +15,7 @@
 3. index.php中修改application folder为 `$application_folder = '/home/xiaoju/app/api/v2';`注意是app中的api
 
 ###nginx
+
 1. 日志：tail -f access.log |grep 'p_login' --color
 2. reload：
 	

@@ -8,7 +8,7 @@
 3. `which nginx` -- `/usr/local/bin/nginx`
 3. 停止nginx服务 `nginx -s stop`
 4. 启动nginx服务 `sudo nginx`
-5. 平滑情动nginx `sudo nginx -s reload`
+5. 平滑启动nginx `sudo nginx -s reload`
 6. `http://localhost:8080` -- 即可访问到nginx服务
 
 ####2. FastCGI
