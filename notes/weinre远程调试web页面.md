@@ -26,12 +26,14 @@
 ![ss](./images/QQ20141219-1.png)
 
 #####2. 执行`weinre`命令，
-注意这个默认会监听`localhost`的`8080`端口，所以请指定host和port，例如`weinre --boundHost 10.97.27.188 --httpPort 8081`.这个IP是你本机器的IP（跟你手机Wi-Fi在同一局域网的）不是远程服务器IP地址。*高级用法请参考`weinre -h`* 如图
+注意这个默认会监听`localhost`的`8080`端口，所以请指定host和port，例如`weinre --boundHost 10.97.27.188 --httpPort 8081`.这个IP是你本机器的IP（跟你手机Wi-Fi在同一局域网的）不是远程服务器IP地址。*高级用法请参考`weinre -h`* 如图    
+
 ![ss](./images/QQ20141219-2.png)
 
 #####3. 然后将
 
 `<script src="http://10.97.27.188:8081/target/target-script-min.js#anonymous"></script>`放到你要调适的页面中。 如图
+
 ![ss](./images/QQ20141219-6.png)
 
 #####4. 点击打开如图所示的链接
