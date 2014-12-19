@@ -16,11 +16,3 @@
 6. [Grunt-Get-Started](http://javascript.ruanyifeng.com/tool/grunt.html)
 
 
-###A同学
-
----
-
-###B同学
-
----
-
