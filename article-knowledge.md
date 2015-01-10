@@ -52,19 +52,27 @@
 
 #####加密相关
 
+-----
+
 1. [Js加密文件](https://code.google.com/p/crypto-js/)
 
 #####模版引擎
+
+-----
 
 1. [Js模版比较](http://www.qingdou.me/5009.html)
 2. [高性能模板原理解析](http://cdc.tencent.com/?p=5723)
 
 #####http相关
 
+-----
+
 1. [Get方法长度限制](http://www.cnblogs.com/lengyuhong/archive/2012/02/04/2330130.html)
 2. [HTTP缓存机制](http://www.cnblogs.com/tankxiao/archive/2012/11/28/2793365.html)
 
 #####web安全
+
+-----
 
 1. [XSRf跨站请求伪造](http://www.cnblogs.com/hyddd/archive/2009/04/09/1432744.html)
 2. [XSS跨站脚本攻击](http://www.cnblogs.com/tankxiao/archive/2012/03/21/2337194.html)
