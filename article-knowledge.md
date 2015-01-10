@@ -2,7 +2,7 @@
 
 *内容均收集于网络，如需引用请注明原作者*
 
-#####liujb
+#####webapp
 
 ---
 
@@ -58,3 +58,8 @@
 
 1. [Js模版比较](http://www.qingdou.me/5009.html)
 2. [高性能模板原理解析](http://cdc.tencent.com/?p=5723)
+
+#####http相关
+
+1. [get方法长度限制](http://www.cnblogs.com/lengyuhong/archive/2012/02/04/2330130.html)
+2. [缓存机制](http://www.cnblogs.com/tankxiao/archive/2012/11/28/2793365.html)
