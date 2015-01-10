@@ -8,7 +8,7 @@
 
 #####实现步骤
 
-1. 进入js文件 `<script type='text/javascript' src='dd.jsbridge.js'></script>`
+1. 引入js文件 `<script type='text/javascript' src='dd.jsbridge.js'></script>`
 2. 使用方法 `didi.initShare(data,callback)`.
 3. 参数说明
 
@@ -66,4 +66,4 @@
 	
 #####Notes
 
-	这样用户在滴滴打车里面打开web页面的时候就能分享到社交平台了。	
+	这样用户在滴滴打车里面打开web页面的时候就能分享到社交平台了。如有疑问，请联系liujiangbei@diditaxi.com.cn
