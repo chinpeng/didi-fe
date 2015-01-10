@@ -15,3 +15,5 @@
 3. `show tables;` -- 查看表
 4. `mysql -h localhost -u root -p` -- 登陆数据库 [-h localhost -P]可选
 5. `drop table Recommender_Candidacy_Relation` -- 
+6. `show create table department;` 显示数据库建表语句
+7. `show full fields from department;` 显示数据库建表语句
