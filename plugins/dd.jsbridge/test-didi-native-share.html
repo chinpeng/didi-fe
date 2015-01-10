@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>滴滴打车</title>
+    <script type='text/javascript' src='./dd.jsbridge.js'></script>
+
+</head>
+
+<body>
+    <script type='text/javascript'>
+    window.addEventListener('DOMContentLoaded', function() {
+
+        // 分享数据
+        var shareData = {
+            share_url: 'http://www.xiaojukeji.com', // 分享的落地页面
+            share_icon_url: 'http://static.xiaojukeji.com/webapp/images/taxi.png', // 分享的icon
+            share_img_url: 'http://diditaxi.com.cn/share/images/na_landing_kuhang/02.png', //分享的大图
+            share_title: '滴滴一下，美好出行', // 分享标题
+            share_content: '滴滴打车，美好出行', // 分享内容
+            share_from: '' // 分享来源
+        };
+
+        if (window.didi) {
+            didi.shareInit(shareData, function() {
+                console.log('分享成功');
+            });
+        }
+
+    });
+    </script>
+</body>
+
+</html>
