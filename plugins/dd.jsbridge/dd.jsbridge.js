@@ -1,4 +1,3 @@
-'use strict';
 (function(window) {
 
     // 默认分享信息
@@ -13,7 +12,7 @@
 
     // 连接DidiJSBridge
     var connectDidiJSBridge = function(callback) {
-        if (typeof DidiJSBridge !== 'undefined') {
+        if (window.DidiJSBridge) {
             callback(DidiJSBridge);
         } else {
             document.addEventListener('DidiJSBridgeReady', function() {
@@ -30,10 +29,14 @@
             }
             if (typeof callback !== 'function') {
                 callback = function() {};
+
             }
 
             // 人口配置
             var entranceCfg = {
+                entrance: {
+                    icon: ''
+                },
                 buttons: [{
                     type: 'share_weixin_timeline',
                     name: '微信朋友圈',
