@@ -35,7 +35,7 @@
             // 人口配置
             var entranceCfg = {
                 entrance: {
-                    icon: ''
+                    icon: 'http://static.xiaojukeji.com/api/img/i-webview-entrance.png' //ios没有传icon的时候没有使用默认的icon
                 },
                 buttons: [{
                     type: 'share_weixin_timeline',

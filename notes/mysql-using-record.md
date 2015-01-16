@@ -17,3 +17,5 @@
 5. `drop table Recommender_Candidacy_Relation` -- 
 6. `show create table department;` 显示数据库建表语句
 7. `show full fields from department;` 显示数据库建表语句
+8. `show variables like 'char%';` 显示编码
+9. `set names utf8` -- 解决了iTerm2终端中mysql中文乱码，我的iTerm2本身是utf8编码，数据库表也是mysql编码
